@@ -51,49 +51,54 @@ class App extends React.Component {
         <div>
 					
 			<Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
+			
 			   <TabList>
 				  <Tab>Add User</Tab>
-				  <Tab>All Users</Tab>
+				  <Tab onClick={this.getUser}>All Users</Tab>
 				  <Tab>Add Course</Tab>
 				  <Tab>All Courses</Tab>
 			   </TabList>
-
+               
 			   <TabPanel>
-				  <h2>USer Created</h2>
+			   
+			      <br /><br />
+				<form onSubmit={this.handleSubmit}>
+				 <label>
+				 UserName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				 <input type="text" name="name" onChange={this.handleChange} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				 </label>
+				<button type="submit">UpdateUser</button>
+				</form>
+			
 			   </TabPanel>
+			   
 			   <TabPanel>
-				  <h2>Listed all user</h2>
-			   </TabPanel>
-			   <TabPanel>
-				  <h2>Courses Added</h2>
-			   </TabPanel>
-			   <TabPanel>
-				  <h2>Fetch All courses</h2>
-			   </TabPanel>
-			</Tabs><br />
-  
-          <button onClick={this.getUser}>GetAllUser</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			 <br /><br />
+			      
+			      <br />
 			 
-			<table>
-			 <tbody>
-			 <tr> 
-			 <th>Id &nbsp;&nbsp;&nbsp;</th>
-			 <th>UserName</th>
-			 </tr>
-				{ this.state.users.map((user,i) => <tr key={'user_' + i}><td>{user.id} &nbsp;&nbsp;&nbsp;&nbsp;</td><td>{user.userName}</td></tr>)}
-			 </tbody>
-			</table>
-			<br /><br />
+				<table>
+				  <tbody>
+					<tr> 
+					<th>Id &nbsp;&nbsp;&nbsp;</th>
+					<th>UserName</th>
+					</tr>
+					{ this.state.users.map((user,i) => <tr key={'user_' + i}><td>{user.id} &nbsp;&nbsp;&nbsp;&nbsp;</td><td>{user.userName}</td></tr>)}
+				  </tbody>
+				</table>
+				
+			   </TabPanel>
+			   
+			   <TabPanel>
+				   <h2>Courses Added</h2>
+					   
+			   </TabPanel>
+					   
+			   <TabPanel>
+					<h2>Fetch All courses</h2>
+			   </TabPanel>
+			   
+			</Tabs>
 			 
-		  <form onSubmit={this.handleSubmit}>
-             <label>
-             UserName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             <input type="text" name="name" onChange={this.handleChange} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             </label>
-            <button type="submit">UpdateUser</button>
-          </form>
-		
         </div>
       );
    }
