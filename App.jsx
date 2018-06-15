@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import  'react-tabs/style/react-tabs.css';
 
 //App component
 class App extends React.Component {
@@ -8,7 +10,8 @@ class App extends React.Component {
         this.state = {
             title: "Users",
             users: [],
-			name:''
+			name:'',
+			tabIndex : 0
         };
 		this.getUser = this.getUser.bind(this);
 		this.handleChange=this.handleChange.bind(this);
@@ -44,8 +47,32 @@ class App extends React.Component {
     render() {
 		
 	  return (
+	  
         <div>
-			<button onClick={this.getUser}>GetAllUser</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					
+			<Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
+			   <TabList>
+				  <Tab>Add User</Tab>
+				  <Tab>All Users</Tab>
+				  <Tab>Add Course</Tab>
+				  <Tab>All Courses</Tab>
+			   </TabList>
+
+			   <TabPanel>
+				  <h2>USer Created</h2>
+			   </TabPanel>
+			   <TabPanel>
+				  <h2>Listed all user</h2>
+			   </TabPanel>
+			   <TabPanel>
+				  <h2>Courses Added</h2>
+			   </TabPanel>
+			   <TabPanel>
+				  <h2>Fetch All courses</h2>
+			   </TabPanel>
+			</Tabs><br />
+  
+          <button onClick={this.getUser}>GetAllUser</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			 <br /><br />
 			 
 			<table>
@@ -67,7 +94,7 @@ class App extends React.Component {
             <button type="submit">UpdateUser</button>
           </form>
 		
-       </div>
+        </div>
       );
    }
 }
