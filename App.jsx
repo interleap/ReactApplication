@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import  'react-tabs/style/react-tabs.css';
+import Profile from './Profile.jsx';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 
 //App component
 class App extends React.Component {
@@ -94,9 +97,8 @@ class App extends React.Component {
     render() {
 		
 	  return (
-	  
         <div>
-					
+				
 			<Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
 			
 			   <TabList>
@@ -118,7 +120,7 @@ class App extends React.Component {
 				</form>
 			
 			   </TabPanel>
-			   
+			  
 			   <TabPanel>
 			      
 			      <br />
@@ -129,10 +131,12 @@ class App extends React.Component {
 					<th>UserId &nbsp;&nbsp;&nbsp;</th>
 					<th>UserName</th>
 					</tr>
-					{ this.state.users.map((user,i) => <tr key={'user_' + i}><td>{user.id} &nbsp;&nbsp;&nbsp;&nbsp;</td><td>{user.userName}</td></tr>)}
+					{ this.state.users.map((user,i) => <tr key={'user_' + i}><td>{user.id} &nbsp;&nbsp;&nbsp;&nbsp;</td><td><Link to="/profile">{user.userName}</Link></td></tr>)}
 				  </tbody>
+				  
 				</table>
 				
+				  
 			   </TabPanel>
 			   
 			   <TabPanel>
@@ -181,7 +185,6 @@ class App extends React.Component {
 			   </TabPanel>
 			   
 			</Tabs>
-			 
         </div>
       );
    }
