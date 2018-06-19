@@ -98,7 +98,7 @@ class App extends React.Component {
 		
 	  return (
         <div>
-				
+        
 			<Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
 			
 			   <TabList>
@@ -131,7 +131,7 @@ class App extends React.Component {
 					<th>UserId &nbsp;&nbsp;&nbsp;</th>
 					<th>UserName</th>
 					</tr>
-					{ this.state.users.map((user,i) => <tr key={'user_' + i}><td>{user.id} &nbsp;&nbsp;&nbsp;&nbsp;</td><td><Link to="/profile">{user.userName}</Link></td></tr>)}
+					{ this.state.users.map((user,i) => <tr key={'user_' + i}><td>{user.id} &nbsp;&nbsp;&nbsp;&nbsp;</td><td><Link to={{ pathname: '/profile', userDetails: { userID: user.id, userName: user.userName} }}>{user.userName}</Link></td></tr>)}
 				  </tbody>
 				  
 				</table>
