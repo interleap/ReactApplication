@@ -18,18 +18,39 @@ class Profile extends React.Component {
    var message='You selected '+this.state.selectValue;
    const {userID} = this.props.location.userDetails;
    const {userName} = this.props.location.userDetails;
+   const {userCourse} =this.props.location.userDetails;
+
 	  return (
 	  
 	  <div>
 	  
-		<h3 align="center">Particular User Information </h3>
+		<h3 align="center"><u>Particular User Information</u></h3>
 		UserID:&nbsp;&nbsp;&nbsp;{userID}
 		<br /><br />
 
 		UserName:&nbsp;&nbsp;&nbsp;{userName}
-		<br /><br />
+		<br />
 		
-		<h4>Enrolled Courses :</h4>
+		<h4><u>Enrolled Courses :</u></h4>
+		<table>
+		    <tbody>
+			    <tr> 
+				<th><u>CourseId</u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+				<th><u>CourseName</u> &nbsp;&nbsp;&nbsp;</th>
+				<th><u>Description</u> &nbsp;&nbsp;&nbsp;</th>
+				<th><u>Level</u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+				<th><u>Length</u></th>
+				</tr>
+		     {userCourse.map((usercourse,i) => <tr key={'usercourse_' + i}><td>{usercourse.id} &nbsp;&nbsp;&nbsp;&nbsp;</td>
+			   <td>{usercourse.courseName} &nbsp;&nbsp;&nbsp;</td>
+			   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {usercourse.description} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			   <td>{usercourse.level} &nbsp;&nbsp;&nbsp;&nbsp;</td>
+			   <td>{usercourse.length}</td></tr>)}
+		
+		    </tbody>
+				  
+	    </table>
+		<br /><br />
 		<p>{message}</p>
 	    <hr/>
 

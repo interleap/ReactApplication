@@ -128,10 +128,10 @@ class App extends React.Component {
 				<table>
 				  <tbody>
 					<tr> 
-					<th>UserId &nbsp;&nbsp;&nbsp;</th>
-					<th>UserName</th>
+					<th><u>UserId</u> &nbsp;&nbsp;&nbsp;</th>
+					<th><u>UserName</u></th>
 					</tr>
-					{ this.state.users.map((user,i) => <tr key={'user_' + i}><td>{user.id} &nbsp;&nbsp;&nbsp;&nbsp;</td><td><Link to={{ pathname: '/profile', userDetails: { userID: user.id, userName: user.userName} }}>{user.userName}</Link></td></tr>)}
+					{ this.state.users.map((user,i) => <tr key={'user_' + i}><td>{user.id} &nbsp;&nbsp;&nbsp;&nbsp;</td><td><Link to={{ pathname: '/profile', userDetails: { userID: user.id, userName: user.userName,userCourse: user.courses } }}>{user.userName}</Link></td></tr>)}
 				  </tbody>
 				  
 				</table>
@@ -172,11 +172,11 @@ class App extends React.Component {
 				<table>
 				  <tbody>
 					<tr> 
-					<th>CourseId &nbsp;&nbsp;&nbsp;</th>
-					<th>CourseName &nbsp;&nbsp;&nbsp;</th>
-					<th>CourseDescription &nbsp;&nbsp;&nbsp;</th>
-					<th>Level &nbsp;&nbsp;&nbsp;</th>
-					<th>Length</th>
+					<th><u>CourseId</u> &nbsp;&nbsp;&nbsp;</th>
+					<th><u>CourseName</u> &nbsp;&nbsp;&nbsp;</th>
+					<th><u>CourseDescription</u> &nbsp;&nbsp;&nbsp;</th>
+					<th><u>Level</u> &nbsp;&nbsp;&nbsp;</th>
+					<th><u>Length</u></th>
 					</tr>
 					{ this.state.courses.map((course,i) => <tr key={'course_' + i}><td>{course.id} &nbsp;&nbsp;&nbsp;&nbsp;</td><td>{course.courseName} &nbsp;&nbsp;&nbsp;&nbsp;</td><td>{course.description} &nbsp;&nbsp;&nbsp;&nbsp;</td><td>{course.level} &nbsp;&nbsp;&nbsp;&nbsp;</td><td>{course.length}</td></tr>)}
 				  </tbody>
