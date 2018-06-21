@@ -24,7 +24,7 @@ class App extends React.Component {
 		this.getUser = this.getUser.bind(this);
 		this.handleChange=this.handleChange.bind(this);
 		this.handleSubmit=this.handleSubmit.bind(this);
-		//this.getCourse = this.getCourse.bind(this);
+		this.getCourse = this.getCourse.bind(this);
 		this.handleChangeCourseName=this.handleChangeCourseName.bind(this);
 		this.handleChangeCourseDescription=this.handleChangeCourseDescription.bind(this);
 		this.handleChangeLevel=this.handleChangeLevel.bind(this);
@@ -57,7 +57,7 @@ class App extends React.Component {
         console.log(res.data);
       })
     }
-	//To Retrieve all the course from spring boot api through axios
+	//To get initial courses available in database
 	componentWillMount(){
 		
 		axios.get("http://localhost:8086/courses")
@@ -66,6 +66,16 @@ class App extends React.Component {
 			this.setState({ courses });
 		  })
 	}
+	//To Retrieve all the course from spring boot api through axios
+	getCourse(){
+		
+		axios.get("http://localhost:8086/courses")
+		  .then(res => {
+			const courses= res.data;
+			this.setState({ courses });
+		  })
+	}
+	
 	//set the updated(value on the form) coursename
 	handleChangeCourseName(e) {
 		this.setState({ coursename: e.target.value});
@@ -105,7 +115,7 @@ class App extends React.Component {
 				  <Tab>Add User</Tab>
 				  <Tab onClick={this.getUser}>All Users</Tab>
 				  <Tab>Add Course</Tab>
-				  <Tab >All Courses</Tab>
+				  <Tab onClick={this.getCourse}>All Courses</Tab>
 			   </TabList>
                
 			   <TabPanel>
