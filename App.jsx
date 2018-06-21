@@ -24,7 +24,7 @@ class App extends React.Component {
 		this.getUser = this.getUser.bind(this);
 		this.handleChange=this.handleChange.bind(this);
 		this.handleSubmit=this.handleSubmit.bind(this);
-		this.getCourse = this.getCourse.bind(this);
+		//this.getCourse = this.getCourse.bind(this);
 		this.handleChangeCourseName=this.handleChangeCourseName.bind(this);
 		this.handleChangeCourseDescription=this.handleChangeCourseDescription.bind(this);
 		this.handleChangeLevel=this.handleChangeLevel.bind(this);
@@ -58,7 +58,7 @@ class App extends React.Component {
       })
     }
 	//To Retrieve all the course from spring boot api through axios
-	getCourse(){
+	componentWillMount(){
 		
 		axios.get("http://localhost:8086/courses")
 		  .then(res => {
@@ -105,7 +105,7 @@ class App extends React.Component {
 				  <Tab>Add User</Tab>
 				  <Tab onClick={this.getUser}>All Users</Tab>
 				  <Tab>Add Course</Tab>
-				  <Tab onClick={this.getCourse}>All Courses</Tab>
+				  <Tab >All Courses</Tab>
 			   </TabList>
                
 			   <TabPanel>
@@ -131,7 +131,7 @@ class App extends React.Component {
 					<th><u>UserId</u> &nbsp;&nbsp;&nbsp;</th>
 					<th><u>UserName</u></th>
 					</tr>
-					{ this.state.users.map((user,i) => <tr key={'user_' + i}><td>{user.id} &nbsp;&nbsp;&nbsp;&nbsp;</td><td><Link to={{ pathname: '/profile', userDetails: { userID: user.id, userName: user.userName,userCourse: user.courses } }}>{user.userName}</Link></td></tr>)}
+					{ this.state.users.map((user,i) => <tr key={'user_' + i} ><td>{user.id} &nbsp;&nbsp;&nbsp;&nbsp;</td><td><Link to={{ pathname: '/profile', userDetails: { userID: user.id, userName: user.userName,userCourse: user.courses},courseDetails: {allCourses: this.state.courses } }}>{user.userName}</Link></td></tr>)}
 				  </tbody>
 				  
 				</table>

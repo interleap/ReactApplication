@@ -1,24 +1,40 @@
 import React from 'react';
 import App from './App.jsx';
+import axios from 'axios';
 
 class Profile extends React.Component {
+
   constructor(props) {
         super(props);
 		this.state = {
-			selectValue:'Android'
+			courseid: -1
 		};
 		this.handleChange=this.handleChange.bind(this);
+		this.handleCourseSubmit=this.handleCourseSubmit.bind(this);
 		
   }
   handleChange(e) {
-		this.setState({ selectValue: e.target.value });
+		this.setState({ courseid: e.target.value });
   }
+  
+  handleCourseSubmit(e) {
+		//to prevent default action happen
+		const {userID} = this.props.location.userDetails;
+         e.preventDefault();
+	    axios.post("http://localhost:8086/usercourses", {userid: userID, courseid:parseInt(this.state.courseid)})
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+	  alert('You selected '+this.state.courseid);
+    }
 
    render() {
-   var message='You selected '+this.state.selectValue;
+	   
    const {userID} = this.props.location.userDetails;
    const {userName} = this.props.location.userDetails;
    const {userCourse} =this.props.location.userDetails;
+   const {allCourses} = this.props.location.courseDetails;
 
 	  return (
 	  
@@ -51,17 +67,14 @@ class Profile extends React.Component {
 				  
 	    </table>
 		<br /><br />
-		<p>{message}</p>
 	    <hr/>
 
-		Add Courses:&nbsp;&nbsp;&nbsp;<select value={this.state.selectValue} onChange={this.handleChange} >
-		<option value="Android">Android</option>
-		<option value="Python">Python</option>
-		<option value="React">React</option>
-		<option value="DigitalMarketing">Digital Marketing</option>
-		<option value="WebSecurity">Web Security</option>
-		</select>
-	  
+		Add Courses:&nbsp;&nbsp;&nbsp;
+		<select value={this.state.courseid} onChange={this.handleChange} >
+		{allCourses.map((allcourse,i) => <option key={'allcourse_' + i} value={allcourse.id}>{allcourse.courseName}</option>)}
+		</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button type="submit" onClick={this.handleCourseSubmit}>AddCourse</button>
+
 	  </div>
 	  );
    }
