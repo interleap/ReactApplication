@@ -7,7 +7,7 @@ class Profile extends React.Component {
   constructor(props) {
         super(props);
 		this.state = {
-			courseid: -1
+			courseid: 0
 		};
 		this.handleChange=this.handleChange.bind(this);
 		this.handleCourseSubmit=this.handleCourseSubmit.bind(this);
