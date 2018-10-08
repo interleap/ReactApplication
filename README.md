@@ -117,7 +117,7 @@ The webpack dev server is started now.
 ### Project Functionalities:
 
 After started the server the first file running of my reactApp is main.js because it is entry point to my application defined to the webpack config file. "main.js" file has to render Main component because the Main instance is in the render method. The Main component has two route element.<br />
-After starting the server we type the url https://localhost:8080/ to the browser it will take to the App component. App component load the data from spring boot api through  axios. <br />
+After started the server type the url https://localhost:8080/ to the browser it will take to the App component. App component load the data from spring boot api through  axios. <br />
 axios is a lightweight HTTP client based library it provides method to call REST Api like springboot ,angular. Axios has axios.get(url) and axios.post(url) method which is used to get and post the data from and to to api end point.
 The other method is used to call api is through AJAX request.
  
